@@ -27,36 +27,57 @@ class _LoginPageState extends State<LoginPage> {
                       //width: 100,
                       //height: 100,
                       child: Image.asset(
-                          'assets/images/background.png'), //Declarar no pubspec
+                          'assets/images/logo.png'), //Declarar no pubspec
                       //Image.network('https://cdn.logo.com/hotlink-ok/logo-social.png')
                     ),
                     Container(height: 20),
-                    TextField(
-                      onChanged: (text) {
-                        email = text;
-                      },
-                      keyboardType: TextInputType
-                          .emailAddress, //para o teclado ser do tipo que e usado para email
-                      decoration: InputDecoration(
-                          labelText: 'Email', border: OutlineInputBorder()),
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Column(
+                          children: [
+                            TextField(
+                              onChanged: (text) {
+                                email = text;
+                              },
+                              keyboardType: TextInputType
+                                  .emailAddress, //para o teclado ser do tipo que e usado para email
+                              decoration: InputDecoration(
+                                  labelText: 'Email',
+                                  border: OutlineInputBorder()),
+                            ),
+                            SizedBox(height: 10),
+                            TextField(
+                              onChanged: (text) {
+                                password = text;
+                              },
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                  labelText: 'Password',
+                                  border: OutlineInputBorder()),
+                            ),
+                            SizedBox(height: 15),
+                            ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    foregroundColor: Colors.black,
+                                    backgroundColor: Colors.blue),
+                                onPressed: () {
+                                  if (email == 'marceloAMG' &&
+                                      password == '123') {
+                                    Navigator.of(context)
+                                        .pushReplacementNamed('/home');
+                                  }
+                                },
+                                child: Container(
+                                    width: double.infinity,
+                                    child: Text(
+                                      'Entrar',
+                                      textAlign: TextAlign.center,
+                                    )))
+                          ],
+                        ),
+                      ),
                     ),
-                    SizedBox(height: 10),
-                    TextField(
-                      onChanged: (text) {
-                        password = text;
-                      },
-                      obscureText: true,
-                      decoration: InputDecoration(
-                          labelText: 'Password', border: OutlineInputBorder()),
-                    ),
-                    SizedBox(height: 10),
-                    ElevatedButton(
-                        onPressed: () {
-                          if (email == 'marceloAMG' && password == '123') {
-                            Navigator.of(context).pushReplacementNamed('/home');
-                          }
-                        },
-                        child: Text('Entrar'))
                   ]),
             ),
           ),
@@ -73,9 +94,12 @@ class _LoginPageState extends State<LoginPage> {
       children: [
         SizedBox(
           child: Image.asset(
-            'assets/images/background.png',
+            'assets/images/logo.png',
             fit: BoxFit.cover,
           ),
+        ),
+        Container(
+          color: Colors.black.withOpacity(0.3),
         ),
         _body(),
       ],
